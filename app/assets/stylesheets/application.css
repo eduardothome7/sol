@@ -8,3 +8,16 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+
+   /* Sidebar full-height */
+
+/* Links cinza e hover branco */
+#sidebarMenu .nav-link {
+    color: #adb5bd; /* cinza */
+}
+
+#sidebarMenu .nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(255,255,255,0.1);
+}

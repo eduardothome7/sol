@@ -1,10 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Detalhes da loja" %>
 
-<%= render @company %>
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="mb-3 d-flex justify-content-between align-items-center">
+  <ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><%= link_to "Lojas", companies_path %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @company.name %></li>
+  </ol>
+</nav>
 
-<div>
-  <%= link_to "Edit this company", edit_company_path(@company) %> |
-  <%= link_to "Back to companies", companies_path %>
+<h3>#<%= @company.id%> - <%= @company.name %></h3>
 
-  <%= button_to "Destroy this company", @company, method: :delete %>
-</div>
+<!-- Botões de ação -->
+<!-- Botões de ação -->
+<div class="mt-3 d-flex">
+  <%= link_to '', target: "_blank", class: "btn btn-outline-primary me-2" do %>
+    <i class="fa-solid fa-globe me-2"></i>
+    Ver Site
+  <% end %>
+  <%= link_to "Editar", edit_company_path(@company), class: "btn btn-outline-primary me-2" %>
+  <%= button_to "Remover", @company, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-outline-danger" %>
+</div> 
+<br>
+<p><strong>CNPJ</strong><br> <%= @company.cnpj %></p>
+
+<% if @company.picture_url.present? && @company.picture_url =~ /\A#{URI::regexp(['http', 'https'])}\z/ %>
+  <div class="mb-2">
+    <%= image_tag @company.picture_url, alt: @company.name, class: "img-fluid rounded", skip_pipeline: true %>
+  </div>
+<% end %>

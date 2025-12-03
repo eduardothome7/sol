@@ -1,9 +1,10 @@
-<%= form_with(model: company) do |form| %>
+<%= form_with model: @company, local: true, html: { multipart: true } do |form| %>
   <% if company.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading">
+        <%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:
+      </h4>
+      <ul class="mb-0">
         <% company.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,27 +12,27 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, "Nome Fantasia *", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :cnpj, style: "display: block" %>
-    <%= form.text_field :cnpj %>
+  <div class="mb-3">
+    <%= form.label :picture_url, "Logo *", class: "form-label" %>
+    <%= form.file_field :picture_url, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
+  <div class="mb-3">
+    <%= form.label :cnpj, "CNPJ *", class: "form-label" %>
+    <%= form.text_field :cnpj, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :picture_url, style: "display: block" %>
-    <%= form.text_field :picture_url %>
+  <div class="mb-3">
+    <% if @company.persisted? %>
+      <%= form.submit "Salvar alterações", class: "btn btn-primary float-end" %>
+    <% else %>
+      <%= form.submit "Salvar", class: "btn btn-primary w-100" %>
+    <% end %>
   </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

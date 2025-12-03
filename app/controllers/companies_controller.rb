@@ -1,9 +1,11 @@
 class CompaniesController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_company, only: %i[ show edit update destroy ]
 
   # GET /companies or /companies.json
   def index
-    @companies = Company.all
+    @companies = current_user.companies
   end
 
   # GET /companies/1 or /companies/1.json
@@ -22,6 +24,7 @@ class CompaniesController < ApplicationController
   # POST /companies or /companies.json
   def create
     @company = Company.new(company_params)
+    @company.user = current_user 
 
     respond_to do |format|
       if @company.save
