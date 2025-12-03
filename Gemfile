@@ -54,6 +54,11 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
+# Use PostgreSQL as the database for Active Record in production
+group :production do
+  gem 'pg', '~> 1.6'
+end
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
@@ -64,3 +69,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem 'dotenv-rails', groups: [:development, :test, :production]
