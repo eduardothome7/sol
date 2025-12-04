@@ -1,0 +1,14 @@
+<footer class="py-4 border-top border-secondary bg-dark">
+  <div class="container d-flex justify-content-between align-items-center">
+    <span class="text-light fw-light">
+      &copy; <%= Time.current.year %> - Painel Administrativo
+    </span>
+    <nav class="d-flex align-items-center">
+      <%= link_to "Sites", admin_sites_path, class: "text-light text-decoration-none me-4" %>
+      <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "text-light text-decoration-none" %>
+    </nav>
+  </div>
+</footer>
+
+<!-- Bootstrap JS via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>

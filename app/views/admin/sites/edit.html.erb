@@ -1,0 +1,14 @@
+<% content_for :title, "Editing site" %>
+
+<nav aria-label="breadcrumb" class="mb-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to "Sites", admin_sites_path %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Editar
+    </li>
+  </ol>
+</nav>
+
+<%= render "form", admin_site: @admin_site %>

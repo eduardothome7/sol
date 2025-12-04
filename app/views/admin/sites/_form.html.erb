@@ -1,0 +1,41 @@
+<%= form_with(model: admin_site, local: true, html: { multipart: true, class: "needs-validation" }) do |form| %>
+
+  <% if admin_site.errors.any? %>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(admin_site.errors.count, "erro") %> impediram o salvamento:</strong>
+      <ul class="mb-0">
+        <% admin_site.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, "Título *", class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :cnpj, "CNPJ *", class: "form-label" %>
+    <%= form.text_field :cnpj, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :logo, "Logo *", class: "form-label d-block" %>
+
+    <% if admin_site.persisted? && admin_site.logo.attached? %>
+      <div class="mb-2">
+        <%= image_tag admin_site.logo, class: "img-thumbnail", style: "max-height: 120px;" %>
+      </div>
+    <% end %>
+
+    <%= form.file_field :logo, class: "form-control" %>
+    <div class="form-text">Envie uma imagem (PNG, JPG, SVG...)</div>
+  </div>
+
+  <div class="mt-4 text-end">
+    <%= form.submit (admin_site.new_record? ? "Cadastrar" : "Salvar alterações"), class: "btn btn-primary" %>
+  </div>
+
+<% end %>

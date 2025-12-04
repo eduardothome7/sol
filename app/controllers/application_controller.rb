@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   stale_when_importmap_changes
 
   def after_sign_in_path_for(resource)
-    companies_path
+    admin_sites_path
   end
 end
